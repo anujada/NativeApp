@@ -85,7 +85,6 @@ const [NearUserList, setNearUserList] = useState([
     }
     if (NearUserList) {
         return (
-
             <Overview NearUserList={NearUserList}/>
         )
     } else if (errorMessage) {
