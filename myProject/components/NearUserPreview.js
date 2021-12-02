@@ -2,7 +2,8 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { colors } from '../utils/index'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, Button } from 'react-native'
+
 
 const { PRIMARY_COLOR,
             SECONDARY_COLOR,
@@ -25,7 +26,8 @@ export default function NearUserPreview({ user }) {
     <View style={styles.innerContainer}>
      <View style={styles.imgContainer}>
         <View style={styles.circularPortrait}>
-            <img style={styles.image} src={user.image} />
+            <Image source={{ uri: user.image }} style={{ width: 100, height: 100, borderRadius: 200 / 2 }} />
+
         </View>
       </View>
 
@@ -36,7 +38,7 @@ export default function NearUserPreview({ user }) {
             <Text> {user.profiletext} </Text>
          </View>
           <View style={styles.btnContainer}>
-
+            <Button color={PRIMARY_COLOR} title="Connect" onPress={() => Alert.alert('Simple Button pressed')} />
           </View>
       </View>
       </View>
@@ -44,49 +46,15 @@ export default function NearUserPreview({ user }) {
     )
 }
 
-const styles = {
-    circularPortrait: {
-       position: 'relative',
-          width: '100%',
-          height: '0',
-          paddingBottom: '100%',
-      overflow: 'hidden',
-      borderRadius: '50%',
-    },
-
-    image: {
-      width: '100%',
-      height: 'auto',
-      marginTop: '-30px'
-      },
-
-    container: {
-      border: '1px solid',
-      borderColor: LIGHTGREY,
-      borderRadius: '4px',
-      display: 'inline-block',
-      width: '100%'
-    },
-    innerContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-between'
-    },
-    imgContainer: {
-      width: '250px'
-    },
-    textContainer: {
-         display:'flex',
-         flexDirection: 'column',
-         justifyContent: 'space-between'
-
-    },
-    titleContainer: {
-      alignSelf: 'flex-start'
-    },
-    btnContainer: {
-      alignSelf: 'flex-end'
-    }
-
-
-}
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: LIGHTGREY,
+  },
+  innerContainer: {
+    flexDirection: 'row',
+  },
+  btnContainer:{
+     alignSelf: 'flex-end',
+     width:100,
+  }
+});

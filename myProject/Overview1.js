@@ -50,7 +50,7 @@ const [NearUserList, setNearUserList] = useState([
 
     useEffect(() => {
         load()
-    }, [NearUserList])
+    })
 
     async function load() {
         //setNearUserList(null)
@@ -85,6 +85,7 @@ const [NearUserList, setNearUserList] = useState([
     }
     if (NearUserList) {
         return (
+
             <Overview NearUserList={NearUserList}/>
         )
     } else if (errorMessage) {
@@ -100,8 +101,6 @@ const [NearUserList, setNearUserList] = useState([
                    <View style={styles.container}>
                        <ActivityIndicator size="large" color={colors.PRIMARY_COLOR} />
                        <StatusBar style="auto" />
-                       <Text> This works 1 </Text>
-                       <Text> {NearUserList} </Text>
                    </View>
                )
     }
@@ -112,7 +111,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

@@ -1,3 +1,4 @@
+
 export const colors = {
     PRIMARY_COLOR: '#626CDB',
     SECONDARY_COLOR: '#002651',
@@ -12,3 +13,4 @@ export const colors = {
      GREEN: '#2eb800',
      RED: '#bd1c00',
 }
+
