@@ -18,7 +18,7 @@ export default function App() {
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      paddingTop: 70,
+      paddingTop: 55,
       paddingBottom:70
     },
   });
