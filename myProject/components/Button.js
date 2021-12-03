@@ -14,14 +14,17 @@ import {
 
 
 
-export default function Button({title, backgroundColor}) {
+export default function Button({title, backgroundColor, width, height}) {
     let [fontsLoaded, error] = useFonts({
         Athiti_400Regular
     })
 
+    const btnwidth= {width}
+    const btnheight={height}
+
     return (
-        <Pressable  style={styles.button} backgroundColor={backgroundColor} onPress = {() => Alert.alert("Button pressed")}>
-        <Text style={styles.text}>{title}</Text>
+        <Pressable  style={[styles.button, { width, height }]} backgroundColor={backgroundColor} onPress = {() => Alert.alert("Button pressed")}>
+        <Text style={styles.text}>{title} </Text>
         </Pressable>
     );
 }
@@ -31,8 +34,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 38,
-    width: 355,
-    height: 63,
   },
 
   text: {

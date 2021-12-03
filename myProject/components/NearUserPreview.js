@@ -42,7 +42,7 @@ export default function NearUserPreview({ user }) {
             <Text style={textstyles.h3}> {user.profiletext} </Text>
          </View>
           <View style={styles.btnContainer}>
-            <Button backgroundColor={PRIMARY_COLOR} title="Connect"  />
+            <Button backgroundColor={PRIMARY_COLOR} title="Connect" width={100} height={33} />
           </View>
       </View>
       </View>
@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
   },
   textContainer:{
   paddingLeft: 15
+  },
+  btnContainer:{
+  paddingTop:10
   }
 
 });
