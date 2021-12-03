@@ -25,7 +25,7 @@ const { PRIMARY_COLOR,
 export default function NearUserPreview({ user }) {
     const reloadIconName = Platform.OS === 'ios' ? 'ios-refresh' : 'md-refresh'
 
-  
+
     return (
     <View style={styles.container}>
     <View style={styles.innerContainer}>
