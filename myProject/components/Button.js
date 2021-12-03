@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Button, Alert, Pressable, TouchableOpacity } from 'react-native';
 import { AppLoading} from "expo"
+import { useNavigation } from '@react-navigation/native';
+
 import { 
     useFonts,
     Athiti_200ExtraLight,
@@ -18,9 +20,12 @@ export default function button({title, backgroundColor}) {
     let [fontsLoaded, error] = useFonts({
         Athiti_400Regular
     })
-
+    const navigation = useNavigation()
     return (
-        <Pressable  style={styles.button} backgroundColor={backgroundColor} onPress = {() => Alert.alert("Button pressed")}>
+        <Pressable  style={styles.button} backgroundColor={backgroundColor} 
+        onPress = {() => {
+          navigation.navigate("Overview1")
+        }} >
         <Text style={styles.text}>{title}</Text>
         </Pressable>
     );

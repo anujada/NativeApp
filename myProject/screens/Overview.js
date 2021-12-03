@@ -21,7 +21,7 @@ const { PRIMARY_COLOR,
              RED} = colors
 
 
-export default function Overview({ NearUserList }) {
+export default function Overview({ NearUserList, navigation }) {
     var [toggle, setToggle] = useState(true)
     const userPreviews = NearUserList.map((listitem)=> <NearUserPreview key={listitem.name} user={listitem}/>);
 

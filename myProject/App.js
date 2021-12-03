@@ -3,13 +3,18 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Overview1 from './Overview1'
 
+import RootStack from './navigators/RootStack';
+
 export default function App() {
    return (
 
+    <RootStack/>
+    
+    /*
       <View style={styles.container}>
            <StatusBar />
 
-      </View>
+      </View>*/
     );
   }
 
