@@ -2,7 +2,11 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { colors } from '../utils/index'
-import { View, Text, StyleSheet, Image, Button } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
+import {textstyles} from '../utils/textstyling'
+
+
+import Button from '../components/Button'
 
 
 const { PRIMARY_COLOR,
@@ -33,12 +37,12 @@ export default function NearUserPreview({ user }) {
 
       <View style={styles.textContainer}>
         <View style={styles.titleContainer}>
-            <Text> {user.distance} </Text>
-            <Text> {user.name} </Text>
-            <Text> {user.profiletext} </Text>
+            <Text style={textstyles.h3}> {user.distance} </Text>
+            <Text style={textstyles.h2}> {user.name} </Text>
+            <Text style={textstyles.h3}> {user.profiletext} </Text>
          </View>
           <View style={styles.btnContainer}>
-            <Button color={PRIMARY_COLOR} title="Connect" onPress={() => Alert.alert('Simple Button pressed')} />
+            <Button backgroundColor={PRIMARY_COLOR} title="Connect"  />
           </View>
       </View>
       </View>
@@ -48,13 +52,17 @@ export default function NearUserPreview({ user }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: LIGHTGREY,
+    borderColor: LIGHTGREY,
+    borderWidth:1,
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 10,
   },
   innerContainer: {
     flexDirection: 'row',
   },
-  btnContainer:{
-     alignSelf: 'flex-end',
-     width:100,
+  textContainer:{
+  paddingLeft: 15
   }
+
 });

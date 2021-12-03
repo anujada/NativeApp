@@ -10,13 +10,19 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/athiti": "^0.2.0",
     "expo": "^43.0.3",
+    "expo-font": "~10.0.3",
     "expo-location": "~13.0.4",
     "expo-status-bar": "~1.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-multiple-select": "^0.5.7",
+    "react-native-paper": "^4.10.1",
+    "react-native-vector-icons": "^9.0.0",
     "react-native-web": "0.17.1",
+    "react-select": "^5.2.1",
     "react-toggle-button": "^2.2.0",
     "toggle-switch-react-native": "^3.3.0"
   },

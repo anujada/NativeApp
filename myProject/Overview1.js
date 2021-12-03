@@ -6,7 +6,10 @@ import * as Location from 'expo-location';
 
 import Overview from './screens/Overview';
 import ReloadIcon from './components/ReloadIcon';
+
 import { colors } from './utils/index';
+import {textstyles} from './utils/textstyling'
+
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors
 
@@ -91,7 +94,7 @@ const [NearUserList, setNearUserList] = useState([
         return (
             <View style={styles.container}>
                 <ReloadIcon load={load} />
-                <Text style={{ textAlign: 'center' }}>{errorMessage}</Text>
+                <Text style={textstyles.h3} style={{ textAlign: 'center' }}>{errorMessage}</Text>
                 <StatusBar style="auto" />
             </View>
         )
