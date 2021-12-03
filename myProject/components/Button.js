@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert, Pressable, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View,  Alert, Pressable, TouchableOpacity } from 'react-native';
 import { AppLoading} from "expo"
 import { 
     useFonts,
@@ -14,7 +14,7 @@ import {
 
 
 
-export default function button({title, backgroundColor}) {
+export default function Button({title, backgroundColor}) {
     let [fontsLoaded, error] = useFonts({
         Athiti_400Regular
     })
