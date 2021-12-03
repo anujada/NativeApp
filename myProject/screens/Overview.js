@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import { colors } from '../utils/index'
 import ToggleSwitch from 'toggle-switch-react-native'
 import { useEffect, useState } from "react";
+import { ToggleButton } from 'react-native-paper';
+import { Ionicons } from '@expo/vector-icons'
 
 import {textstyles} from '../utils/textstyling'
 
@@ -26,6 +28,11 @@ const { PRIMARY_COLOR,
 export default function Overview({ NearUserList, navigation }) {
     var [toggle, setToggle] = useState(true)
     const userPreviews = NearUserList.map((listitem)=> <NearUserPreview key={listitem.name} user={listitem}/>);
+
+      const [status, setStatus] = React.useState('unchecked');
+            const onButtonToggle = value => {
+                setStatus(status === 'checked' ? 'unchecked' : 'checked');
+              };
 
 
     useEffect(() => {
@@ -52,9 +59,21 @@ export default function Overview({ NearUserList, navigation }) {
                   />
                  </View>
                  <View style={styles.results}>
+
+                 <View style={styles.headline}>
                     <Text style={textstyles.h1}>
                     People near you
                     </Text>
+
+                    <ToggleButton style={styles.toggleButton}
+                                      icon={()=><View><Text style={{color:PRIMARY_COLOR}}><Ionicons name='options-outline' size={24} color={colors.PRIMARY_COLOR} /></Text></View>}
+                                      value="options"
+                                      status={status}
+                                      onPress={onButtonToggle}
+                                    />
+
+                    </View>
+
                     <FilterBar />
                     <ScrollView  showsVerticalScrollIndicator={false}>
                         {userPreviews}
@@ -99,6 +118,12 @@ const styles = StyleSheet.create({
         },
     results: {
         margin:20
+    },
+    headline:{
+    flexDirection: 'row',
+    },
+    toggleButtonContainer:{
+    alignSelf: "flex-end"
     }
 
 })
