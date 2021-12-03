@@ -26,28 +26,28 @@ const [NearUserList, setNearUserList] = useState([
                                                                             "name":"Luise",
                                                                             "profiletext":"Happy to have a conversation",
                                                                               "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                              "distance": "10 meter"
+                                                                              "distance": "20 meter"
 
                                                                             },
                                                                             {
                                                                             "name":"William",
                                                                             "profiletext":"Just approach me!",
                                                                               "image": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                              "distance": "10 meter"
+                                                                              "distance": "100 meter"
 
                                                                             },
                                                                               {
                                                                                 "name":"Catherine",
                                                                                 "profiletext":"Just approach me!",
                                                                                 "image": "https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                                "distance": "10 meter"
+                                                                                "distance": "150 meter"
 
                                                                               },
                                                                               {
                                                                                 "name":"Eva",
                                                                                 "profiletext":"Let´s talk about art:)",
                                                                                 "image": "https://images.pexels.com/photos/2568412/pexels-photo-2568412.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                                "distance": "10 meter"
+                                                                                "distance": "600 meter"
                                                                               }
                                                                             ])
 
