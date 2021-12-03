@@ -1,8 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import { colors } from '../utils/index'
 import ToggleSwitch from 'toggle-switch-react-native'
 import { useEffect, useState } from "react";
+
+import {textstyles} from '../utils/textstyling'
 
 import FilterBar from '../components/FilterBar'
 import NearUserPreview from '../components/NearUserPreview'
@@ -31,7 +33,7 @@ export default function Overview({ NearUserList, navigation }) {
         }, [toggle])
 
     function toggleFunc(isOn){
-                setToggle(isOn => !isOn);
+        setToggle(isOn => !isOn);
     }
 
     if(toggle===true){
@@ -49,12 +51,14 @@ export default function Overview({ NearUserList, navigation }) {
                       onToggle={isOn=> toggleFunc(isOn)}
                   />
                  </View>
-                 <View class="results">
-                    <Text h1>
+                 <View style={styles.results}>
+                    <Text style={textstyles.h1}>
                     People near you
                     </Text>
                     <FilterBar />
-                   {userPreviews}
+                    <ScrollView  showsVerticalScrollIndicator={false}>
+                        {userPreviews}
+                   </ ScrollView>
                   </View>
             </View>
         )
@@ -62,7 +66,7 @@ export default function Overview({ NearUserList, navigation }) {
     else{
         return (
         <View style={styles.content}>
-        <View class="toggle-wrapper">
+        <View >
                             <ToggleSwitch
                               isOn={false}
                               onColor={PRIMARY_COLOR}
@@ -74,7 +78,7 @@ export default function Overview({ NearUserList, navigation }) {
                           />
                          </View>
                     <View style={styles.container}>
-                        <Text >Turn on and connect to people around you!</Text>
+                        <Text >Turn on to connect to people around you!</Text>
                     </View>
               </View>
                 )
@@ -91,6 +95,10 @@ const styles = StyleSheet.create({
     container: {
             flex: 1,
             justifyContent: 'center',
-        }
+            textAlign: 'center'
+        },
+    results: {
+        margin:20
+    }
 
 })
