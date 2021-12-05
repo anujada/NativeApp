@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, } from 'react-native';
+import { Checkbox } from 'react-native-paper';
 import { Formik } from "formik";
 import Button from '../components/Button';
 
@@ -22,6 +23,7 @@ import {
 //const {grey}= Colors;
 const login = (navigation) => {
     const [hidePassword, setHidePassword] = useState(true);
+    const [checked, setChecked] = useState(false);
 
     return(
         <View style={styles.styledContainer}>
@@ -68,7 +70,15 @@ const login = (navigation) => {
                                 isPassword={true}
                                 hidePassword={hidePassword}
                                 setHidePassword={setHidePassword}/>
-                            <Text style={styles.msgBox}>Checkbox here</Text>
+
+                            <View style={styles.extraView}>
+                                <Text style={styles.textLinkContent}>I agree to the privacy policy</Text>
+                                <Checkbox
+                                    status = {checked ? 'checked' : 'unchecked'}
+                                    onPress={() => {
+                                    setChecked(!checked);}}
+                                />
+                            </View>
                             <Button style={styles.myButton} title='GET STARTED' backgroundColor='#8E97FD' color='#F6F1FB' width={362} height={63}/>
                             </View>)}   
                 </Formik>
@@ -252,8 +262,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10,
-        paddingTop: 55,
+        padding: 20,
     },
 
     extraText: {
