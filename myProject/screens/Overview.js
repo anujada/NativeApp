@@ -65,6 +65,9 @@ export default function Overview({ NearUserList, navigation }) {
                     People near you
                     </Text>
 
+
+
+
                     <ToggleButton style={styles.toggleButton}
                                       icon={()=><View><Text style={{color:PRIMARY_COLOR}}><Ionicons name='options-outline' size={24} color={colors.PRIMARY_COLOR} /></Text></View>}
                                       value="options"
@@ -73,8 +76,9 @@ export default function Overview({ NearUserList, navigation }) {
                                     />
 
                     </View>
-
+{ status =='checked' &&
                     <FilterBar />
+                    }
                     <ScrollView  showsVerticalScrollIndicator={false}>
                         {userPreviews}
                    </ ScrollView>
