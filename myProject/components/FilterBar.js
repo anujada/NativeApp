@@ -46,8 +46,8 @@ export default function FilterBar() {
         <View style={styles.innercontainer}>
 
             <ToggleButton style={styles.toggleButton}
-                  icon={()=><View><Text style={{color:PRIMARY_COLOR}}><Ionicons name='bicycle-outline' size={24} color={colors.PRIMARY_COLOR} /> {"\n"} Hobbies</Text></View>}
-                  value="hobbies"
+                  icon={()=><View><Text style={{color:PRIMARY_COLOR}}><Ionicons name='bicycle-outline' size={24} color={colors.PRIMARY_COLOR} /> {"\n"} Sports</Text></View>}
+                  value="sports"
                   status={status1}
                   onPress={onButtonToggle1}
                 />
@@ -58,8 +58,8 @@ export default function FilterBar() {
                                   onPress={onButtonToggle2}
                                 />
                 <ToggleButton style={styles.toggleButton}
-                                                  icon={()=><View><Text style={{color:PRIMARY_COLOR}}><Ionicons name='extension-puzzle-outline' size={24} color={colors.PRIMARY_COLOR} /> {"\n"} Kids</Text></View>}
-                                                  value="kids"
+                                                  icon={()=><View><Text style={{color:PRIMARY_COLOR}}><Ionicons name='color-palette-outline' size={24} color={colors.PRIMARY_COLOR} /> {"\n"} Art</Text></View>}
+                                                  value="art"
                                                   status={status3}
                                                   onPress={onButtonToggle3}
                                                 />
