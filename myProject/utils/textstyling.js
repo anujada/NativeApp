@@ -17,7 +17,6 @@ var fontRegular;
      // after the loading set the font status to true
      loadFont().then(() => {
        setFontReady(true);
-       FontRegular=athiti;
      });
    }, []);
  }

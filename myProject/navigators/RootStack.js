@@ -15,6 +15,9 @@ const RootStack = () => {
     return(
         <NavigationContainer>
             <Stack.Navigator
+             screenOptions={({ route, navigation }) => ({
+                 headerShown: false,
+               })}
                 initialRouteName="Home"
             >
                 <Stack.Screen name="Home" component={Home} />

@@ -114,6 +114,8 @@ export default function Overview({ NearUserList, navigation }) {
 const styles = StyleSheet.create({
     content: {
         alignItems: 'center',
+        paddingTop: 55,
+        paddingBottom:70
     },
     container: {
             flex: 1,
