@@ -24,28 +24,19 @@ export default function Button({title, backgroundColor, width, height, color, go
     })
     const navigation = useNavigation()
 
-    if (google == true) {
-      return (
-      <TouchableOpacity style={[styles.button, { width, height, backgroundColor,}]} onPress = {() => {
-        navigation.navigate({navigateTo})
-      }}>
-      <Fontisto name={iconName} color='#ffffff' size={25} style={styles.icon}/>
-      <Text style={styles.text, {color}}>{title} </Text>
-      </TouchableOpacity>
-      );
-    } else {
-      return (
+return (
         <TouchableOpacity style={[styles.button, { width, height, backgroundColor}]} onPress = {() => {
-          navigation.navigate('Signup', 'Login', {navigateTo})
+        if(navigateTo){
+        navigation.navigate(navigateTo)
+        }
+        else{
+
+        }
+
         }}>
         <Text style={styles.text, {color}}>{title} </Text>
         </TouchableOpacity>
     );
-      
-    }
-
-
-    
 }
 
 const styles = StyleSheet.create({

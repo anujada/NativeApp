@@ -30,9 +30,9 @@ const login = (navigation) => {
             <StatusBar> style = {{color: '#9CA3AF'}} </StatusBar>
             <View style={styles.innerContainer}>
                 <Text style={styles.pageTitle}>Create your account</Text>
-                <Button style={styles.myButton} title='CONTINUE WITH FACEBOOK' backgroundColor='#7583CA' color='#F6F1FB' width={362} height={63} google={true} iconName='facebook'/>
+                <Button style={styles.myButton} title='CONTINUE WITH FACEBOOK' backgroundColor='#7583CA' color='#F6F1FB' width={362} height={63} google={true} iconName='facebook' navigateTo='Overview1'/>
                 <View style={styles.line}></View>
-                <Button style={styles.myButton} title='CONTINUE WITH GOOGLE' backgroundColor='#8E97FD' color='#F6F1FB' width={362} height={63} google={true} iconName='google'/>
+                <Button style={styles.myButton} title='CONTINUE WITH GOOGLE' backgroundColor='#8E97FD' color='#F6F1FB' width={362} height={63} google={true} iconName='google' navigateTo='Overview1'/>
                 <Text style={styles.subTitle}>OR LOGIN WITH EMAIL</Text>
                 <Formik
                     initialValues ={{username: '', password: ''}}
@@ -79,7 +79,7 @@ const login = (navigation) => {
                                     setChecked(!checked);}}
                                 />
                             </View>
-                            <Button style={styles.myButton} title='GET STARTED' backgroundColor='#8E97FD' color='#F6F1FB' width={362} height={63}/>
+                            <Button style={styles.myButton} title='GET STARTED' backgroundColor='#8E97FD' color='#F6F1FB' width={362} height={63} navigateTo='Overview1'/>
                             </View>)}   
                 </Formik>
             </View>
