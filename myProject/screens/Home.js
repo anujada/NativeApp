@@ -15,7 +15,7 @@ export default function Home() {
         <Text style={styles.heading}>Lorem Ipsum</Text>
         <Text style={styles.smallHeading}>Meet People next to you.</Text>
         
-      <Button title='Sign Up' backgroundColor='#8E97FD' color='#F6F1FB' width={365} height={63} navigateTo='Signup'/>
+      <Button title='Sign Up' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63} navigateTo='Signup'/>
       {/*<Button title='Already have an account? Log In' backgroundColor='#8E97FD'/>*/}
       <View style={styles.extraView}>
           <Text style={styles.extraText}>
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     margin: 'auto',
+    paddingTop: 55,
+    paddingBottom:70
+
   }, 
 
 

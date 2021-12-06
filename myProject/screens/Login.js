@@ -31,9 +31,9 @@ const login = () => {
             <StatusBar> style = {{color: '#9CA3AF'}} </StatusBar>
             <View style={styles.innerContainer}>
                 <Text style={styles.pageTitle}>Welcome Back!</Text>
-                <Button style={styles.myButton} title='CONTINUE WITH FACEBOOK' backgroundColor='#7583CA' color='#F6F1FB' width={362} height={63} google={true} iconName='facebook'/>
+                <Button style={styles.myButton} title='CONTINUE WITH FACEBOOK' backgroundColor='#7583CA' color='#F6F1FB' width={300} height={63} google={true} iconName='facebook'/>
                 <View style={styles.line}></View>
-                <Button style={styles.myButton} title='Continue with Google' backgroundColor='#8E97FD' color='#F6F1FB' width={362} height={63} google={true} iconName='google'/>
+                <Button style={styles.myButton} title='Continue with Google' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63} google={true} iconName='google'/>
                 <Text style={styles.subTitle}>OR LOGIN WITH EMAIL</Text>
                 <Formik
                     initialValues ={{username: '', password: ''}}
@@ -64,7 +64,7 @@ const login = () => {
                                 setHidePassword={setHidePassword}/>
 
                             <Text style={styles.msgBox}>...</Text>
-                            <Button style={styles.myButton} title='LOG IN' backgroundColor='#8E97FD' color='#F6F1FB' width={362} height={63}/>
+                            <Button style={styles.myButton} title='LOG IN' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63}/>
                             
 
                             <Text style={styles.forgotPassword}>Forgot your password?</Text>
@@ -110,15 +110,17 @@ export default login;
 const styles = StyleSheet.create({
     styledContainer: {
         flex: 1,
-        padding: 25,    
-        paddingLeft: 10,
         backgroundColor: '#ffffff',
+        alignItems: 'center',
+        paddingTop: 35,
+        paddingBottom:70
     },
 
     innerContainer: {
         flex: 1,
-        width: 375,
+        margin: 25,
         alignItems: 'center',
+
     },
 
     pageTitle: {
@@ -156,9 +158,7 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
     },
 
-    styledFormArea: {
-        width: 360,
-    },
+
 
     styledTextInput: {
         backgroundColor: '#E5E7EB',
@@ -259,8 +259,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10,
-        paddingTop: 55,
+
     },
 
     extraText: {
