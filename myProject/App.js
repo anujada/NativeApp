@@ -1,13 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Overview1 from './Overview1'
 
+import {useAssets} from 'expo-asset'
 import RootStack from './navigators/RootStack';
+import {onAuthStateChanged} from 'firebase/auth';
+import { auth } from './firebase';
+
+
 
 export default function App() {
-   return (
-
+  
+  return (
     <RootStack/>
     
     /*
@@ -16,7 +20,7 @@ export default function App() {
 
       </View>*/
     );
-  }
+}
 
   const styles = StyleSheet.create({
     container: {

@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View,  Alert, Pressable, TouchableOpacity } from 'react-native';
-import { AppLoading} from "expo"
 import { useNavigation } from '@react-navigation/native';
 
 import {Fontisto} from '@expo/vector-icons'
+
+
 
 import { 
     useFonts,
@@ -22,21 +22,19 @@ export default function Button({title, backgroundColor, width, height, color, go
     let [fontsLoaded, error] = useFonts({
         Athiti_400Regular
     })
+
     const navigation = useNavigation()
 
-return (
-        <TouchableOpacity style={[styles.button, { width, height, backgroundColor}]} onPress = {() => {
-        if(navigateTo){
-        navigation.navigate(navigateTo)
-        }
-        else{
-
-        }
-
-        }}>
-        <Text style={styles.text, {color}}>{title} </Text>
-        </TouchableOpacity>
-    );
+    return (
+            <TouchableOpacity style={[styles.button, { width, height, backgroundColor}]}  onPress = {() => {
+                if(navigateTo){
+                    navigation.navigate(navigateTo)
+                }
+                else{}}}
+            >
+            <Text style={styles.text, {color}}>{title} </Text>
+            </TouchableOpacity>
+        );
 }
 
 const styles = StyleSheet.create({

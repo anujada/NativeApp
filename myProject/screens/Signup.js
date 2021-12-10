@@ -4,27 +4,49 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, } from 'rea
 import { Checkbox } from 'react-native-paper';
 import { Formik } from "formik";
 import Button from '../components/Button';
-
 import {Octicons, Ionicons, Fontisto} from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native';
 
-/*
-import {
-    StyledContainer,
-    header,
-    pageTitle,
-    StyledFormArea,
-    StyledInput,
-    StyledButton,
-    StyledInputLabel,
-    ButtonText,
-    Colors
-} from '../components/style'*/
+import { auth } from '../firebase';
+import {createUserWithEmailAndPassword, onAuthStateChanged, signOut} from 'firebase/auth';
+
+
 
 //const {grey}= Colors;
-const login = (navigation) => {
+const login = () => {
     const [hidePassword, setHidePassword] = useState(true);
     const [checked, setChecked] = useState(false);
 
+    const [userName, setUserName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [user, setUser] = useState({})
+
+    const navigation = useNavigation()
+
+    onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+        if (currentUser) {
+            navigation.navigate('Profile')
+        }
+    })
+
+    const handleSignUp  = async () => {
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((re) => {
+            console.log(re);
+        })
+        .catch((re) => {
+            console.log(re);
+        })
+
+    };
+
+    const handleLogOut = async () => {
+        signOut(auth)
+    }
+    
     return(
         <View style={styles.styledContainer}>
             <StatusBar> style = {{color: '#9CA3AF'}} </StatusBar>
@@ -39,37 +61,52 @@ const login = (navigation) => {
                     onSubmit={(values) =>{
                         console.log(values);
                     }}>
-                        {({handleChange,handleBlur, handleSubmit, values})=> (<View style={styles.styledFormArea}>
-                            <MyTextInput
-                                label= "Username"
-                                icon="mail"
-                                placeholder= "userAndy001122"
-                                placeholderTextColor='#9CA3AF'
-                                onChangeText= {handleChange('username')}
-                                onBlur= {handleBlur('username')}
-                                value={values.username}/>
+                        {()=> (<View style={styles.styledFormArea}>
+                            <View>
+                                <View style={styles.leftIcon}>
+                                    <Octicons name="mail" size={30} color='#6D28D9'/>
+                                </View>
+                                <Text style={styles.styledInputLabel}>Username</Text>
+                                <TextInput style={styles.styledTextInput}
+                                    placeholder = "userAndy00"
+                                    placeholderTextColor='#9CA3AF'
+                                    onChangeText= {text => setUserName(text)}
+                                    //onBlur= {handleBlur('username')}
+                                    //value={values.username}
+                                    />
+                            </View>
 
-                            <MyTextInput
-                                label= "Email"
-                                icon="mail"
-                                placeholder= "userAndy001122"
-                                placeholderTextColor='#9CA3AF'
-                                onChangeText= {handleChange('email')}
-                                onBlur= {handleBlur('email')}
-                                value={values.username}/>
+                            <View>
+                                <View style={styles.leftIcon}>
+                                    <Octicons name="mail" size={30} color='#6D28D9'/>
+                                </View>
+                                <Text style={styles.styledInputLabel}>Email</Text>
+                                <TextInput style={styles.styledTextInput}
+                                    placeholder = "userAndy00@gmail.com"
+                                    placeholderTextColor='#9CA3AF'
+                                    onChangeText= {text => setEmail(text)}
+                                    //onBlur= {handleBlur('username')}
+                                    //value={values.username}
+                                    />
+                            </View>
 
-                            <MyTextInput
-                                label= "Password"
-                                icon="lock"
-                                placeholder= "* * * * * "
-                                placeholderTextColor='black'
-                                onChangeText= {handleChange('password')}
-                                onBlur= {handleBlur('password')}
-                                value={values.password}
-                                secureTextEntry={hidePassword}
-                                isPassword={true}
-                                hidePassword={hidePassword}
-                                setHidePassword={setHidePassword}/>
+                            <View>
+                                <View style={styles.leftIcon}>
+                                    <Octicons name="lock" size={30} color='#6D28D9'/>
+                                </View>
+                                <Text style={styles.styledInputLabel}>Password</Text>
+                                <TextInput style={styles.styledTextInput}
+                                    placeholder = "* * * * * * * * *"
+                                    placeholderTextColor='#9CA3AF'
+                                    onChangeText= {text => setPassword(text)}
+                                    //onBlur= {handleBlur('username')}
+                                    //value={values.username}
+                                    secureTextEntry = {hidePassword}
+                                    />
+                                <TouchableOpacity style={styles.rightIcon} onPress={() => setHidePassword(!hidePassword)} >
+                                    <Ionicons name={hidePassword ? 'md-eye-off': 'md-eye'} size={30} color='#9CA3AF'/>
+                                </TouchableOpacity>
+                            </View>
 
                             <View style={styles.extraView}>
                                 <Text style={styles.textLinkContent}>I agree to the privacy policy</Text>
@@ -79,7 +116,16 @@ const login = (navigation) => {
                                     setChecked(!checked);}}
                                 />
                             </View>
-                            <Button style={styles.myButton} title='GET STARTED' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63} navigateTo='Overview1'/>
+    
+                            {/*<Button style={styles.myButton} title='GET STARTED' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63} navigateTo='Overview1'/>*/}
+
+                            <TouchableOpacity style={styles.button} disabled={!password || !email}  onPress = {() => {navigation.navigate("Overview1")}, handleSignUp}>
+                            <Text style={styles.text}>GET STARTED</Text>
+                            </TouchableOpacity>
+                            <Text>{user?.email}</Text>
+                            <TouchableOpacity style={styles.button} onPress = {() => {navigation.navigate("Overview1")}, handleLogOut}>
+                            <Text style={styles.text}>SIGN OUT</Text>
+                            </TouchableOpacity>
                             </View>)}   
                 </Formik>
             </View>
@@ -87,25 +133,6 @@ const login = (navigation) => {
     );
 
 };
-
-
-const MyTextInput = ({label ,icon, isPassword, hidePassword, setHidePassword, props }) => {
-    return (
-        <View>
-            <View style={styles.leftIcon}>
-                <Octicons name={icon} size={30} color='#6D28D9'/>
-            </View>
-            <Text style={styles.styledInputLabel}> {label}</Text>
-            <TextInput style={styles.styledTextInput}>{props}</TextInput>
-            {isPassword && (
-                <TouchableOpacity style={styles.rightIcon} onPress={() => setHidePassword(!hidePassword)} >
-                    <Ionicons name={hidePassword ? 'md-eye-off': 'md-eye'} size={30} color='#9CA3AF'/>
-                </TouchableOpacity>
-            )}
-        </View>
-    )
-};
-
 
 export default login;
 
@@ -158,7 +185,6 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingLeft: 15,
     },
-
 
 
     styledTextInput: {
@@ -282,7 +308,30 @@ const styles = StyleSheet.create({
     textLinkContent: {
         color: '#0033CC',
         fontSize: 15,
-    }
+    },
+
+    //Styling for button component. Delete if not in use!
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 38,
+        flexDirection: 'row',
+        backgroundColor:'#8E97FD',
+        width: 300,
+        height: 63,
+      },
+    
+      text: {
+          fontFamily: "Athiti_400Regular",
+          fontStyle: 'normal',
+          fontSize: 14,
+          letterSpacing: 0.05,
+          color: '#F6F1FB',
+      },
+    
+      icon: {
+        paddingRight: 25,
+      },
 
 
 })

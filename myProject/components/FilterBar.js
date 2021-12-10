@@ -91,5 +91,8 @@ const styles = StyleSheet.create({
     },
     buttonInner:{
     alignSelf: 'center'
-    }
+    },
+
+    
+
 })

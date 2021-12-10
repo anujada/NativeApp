@@ -1,44 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, } from 'react-native';
+import { Checkbox } from 'react-native-paper';
 import { Formik } from "formik";
 import Button from '../components/Button';
-import { useNavigation } from '@react-navigation/native';
 import {Octicons, Ionicons, Fontisto} from '@expo/vector-icons'
 
 import { auth } from '../firebase';
-import {signInWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 
-/*
-import {
-    StyledContainer,
-    header,
-    pageTitle,
-    StyledFormArea,
-    StyledInput,
-    StyledButton,
-    StyledInputLabel,
-    ButtonText,
-    Colors
-} from '../components/style'*/
+
 
 //const {grey}= Colors;
-const login = () => {
+const login = (navigation) => {
     const [hidePassword, setHidePassword] = useState(true);
+    const [checked, setChecked] = useState(false);
 
-    const navigation = useNavigation()
-    
+    const [userName, setUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    onAuthStateChanged(auth, (currentUser) => {
-        if (currentUser) {
-            navigation.navigate('Overview1')
-        }
-    })
-
-    const handleLogIn  = async () => {
-        await signInWithEmailAndPassword(auth, email, password)
+    
+    const handleSignUp  = async () => {
+        createUserWithEmailAndPassword(auth, email, password)
         .then((re) => {
             console.log(re);
         })
@@ -48,21 +32,36 @@ const login = () => {
 
     };
 
+
     return(
         <View style={styles.styledContainer}>
             <StatusBar> style = {{color: '#9CA3AF'}} </StatusBar>
             <View style={styles.innerContainer}>
-                <Text style={styles.pageTitle}>Welcome Back!</Text>
-                <Button style={styles.myButton} title='CONTINUE WITH FACEBOOK' backgroundColor='#7583CA' color='#F6F1FB' width={300} height={63} google={true} iconName='facebook'/>
+                <Text style={styles.pageTitle}>Create your account</Text>
+                <Button style={styles.myButton} title='CONTINUE WITH FACEBOOK' backgroundColor='#7583CA' color='#F6F1FB' width={300} height={63} google={true} iconName='facebook' navigateTo='Overview1'/>
                 <View style={styles.line}></View>
-                <Button style={styles.myButton} title='CONTINUE WITH GOOGLE' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63} google={true} iconName='google'/>
+                <Button style={styles.myButton} title='CONTINUE WITH GOOGLE' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63} google={true} iconName='google' navigateTo='Overview1'/>
                 <Text style={styles.subTitle}>OR LOGIN WITH EMAIL</Text>
                 <Formik
                     initialValues ={{username: '', password: ''}}
                     onSubmit={(values) =>{
                         console.log(values);
                     }}>
-                        {({handleChange,handleBlur, handleSubmit, values})=> (<View style={styles.styledFormArea}>
+                        {()=> (<View style={styles.styledFormArea}>
+                            <View>
+                                <View style={styles.leftIcon}>
+                                    <Octicons name="mail" size={30} color='#6D28D9'/>
+                                </View>
+                                <Text style={styles.styledInputLabel}>Username</Text>
+                                <TextInput style={styles.styledTextInput}
+                                    placeholder = "userAndy00"
+                                    placeholderTextColor='#9CA3AF'
+                                    onChangeText= {text => setUserName(text)}
+                                    //onBlur= {handleBlur('username')}
+                                    //value={values.username}
+                                    />
+                            </View>
+
                             <View>
                                 <View style={styles.leftIcon}>
                                     <Octicons name="mail" size={30} color='#6D28D9'/>
@@ -81,7 +80,7 @@ const login = () => {
                                 <View style={styles.leftIcon}>
                                     <Octicons name="lock" size={30} color='#6D28D9'/>
                                 </View>
-                                <Text style={styles.styledInputLabel}>Password</Text>
+                                <Text style={styles.styledInputLabel}>Username</Text>
                                 <TextInput style={styles.styledTextInput}
                                     placeholder = "* * * * * * * * *"
                                     placeholderTextColor='#9CA3AF'
@@ -95,26 +94,16 @@ const login = () => {
                                 </TouchableOpacity>
                             </View>
 
-                            <Text style={styles.msgBox}>...</Text>
-                            {/*<Button style={styles.myButton} title='LOG IN' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63}/>*/}
-                            
-                            <TouchableOpacity style={styles.button} onPress = {() => {navigation.navigate("Overview1")}, handleLogIn}>
-                            <Text style={styles.text}>LOG IN</Text>
-                            </TouchableOpacity>
-
-
-
-                            <Text style={styles.forgotPassword}>Forgot your password?</Text>
-
                             <View style={styles.extraView}>
-                                <Text style={styles.extraText}>
-                                    Don't have an account already?
-                                </Text>
-                                <TouchableOpacity style={styles.textLink}>
-                                    <Text style={styles.textLinkContent} 
-                                    onPress = {() => {navigation.navigate("Signup")}}>Sign Up</Text>
-                                </TouchableOpacity>
+                                <Text style={styles.textLinkContent}>I agree to the privacy policy</Text>
+                                <Checkbox
+                                    status = {checked ? 'checked' : 'unchecked'}
+                                    onPress={() => {
+                                    setChecked(!checked);}}
+                                />
                             </View>
+    
+                            <Button style={styles.myButton} title='GET STARTED' backgroundColor='#8E97FD' color='#F6F1FB' width={300} height={63} /*navigateTo='Overview1'*//>
                             </View>)}   
                 </Formik>
             </View>
@@ -160,7 +149,6 @@ const styles = StyleSheet.create({
         color: '#A1A4B2',
         padding: 10,
         paddingLeft: 15,
-        paddingBottom: 35,
         paddingTop: 30
     },
 
@@ -299,30 +287,7 @@ const styles = StyleSheet.create({
     textLinkContent: {
         color: '#0033CC',
         fontSize: 15,
-    },
-
-    //Styling for button component. Delete if not in use!
-    button: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 38,
-        flexDirection: 'row',
-        backgroundColor:'#8E97FD',
-        width: 300,
-        height: 63,
-      },
-    
-      text: {
-          fontFamily: "Athiti_400Regular",
-          fontStyle: 'normal',
-          fontSize: 18,
-          letterSpacing: 0.05,
-          color: '#F6F1FB',
-      },
-    
-      icon: {
-        paddingRight: 25,
-      },
+    }
 
 
 })
