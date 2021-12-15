@@ -45,7 +45,7 @@ export default function Profile() {
             updateProfile(user, userData),
             setDoc(doc(db, "users", user.uid),  {...userData, uid: user.uid})
         ])
-        navigation.navigate('Contacts')
+        navigation.navigate('Overview1')
     }
 
     async function handleProfilePicture() {

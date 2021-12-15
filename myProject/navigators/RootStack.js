@@ -93,7 +93,7 @@ const RootStack = () => {
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Signup" component={Signup} />
                 <Stack.Screen name="Overview1" component={Overview1} />
-               
+                <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="userlistAndChat" component={userlistAndChat} />
                 <Stack.Screen name="Contacts" component={Contacts} />
 

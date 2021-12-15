@@ -125,8 +125,8 @@ const login = () => {
                             <Text>{user?.email}</Text>
                             <TouchableOpacity style={styles.button} onPress = {() => {navigation.navigate("Overview1")}, handleLogOut}>
                             <Text style={styles.text}>SIGN OUT</Text>
-                            </TouchableOpacity>
-                            </View>)}   
+                                    </TouchableOpacity>
+                        </View>)}   
                 </Formik>
             </View>
         </View>
