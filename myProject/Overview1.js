@@ -10,6 +10,8 @@ import ReloadIcon from './components/ReloadIcon';
 import { colors } from './utils/index';
 import {textstyles} from './utils/textstyling'
 
+import {getCurrentUser } from './utils'
+import { writeUserLocationToDb, getNearUsersFromDb } from './utils/location_utils'
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors
 
@@ -68,6 +70,18 @@ const [NearUserList, setNearUserList] = useState([
             const location = await Location.getCurrentPositionAsync()
 
             const { latitude, longitude } = location.coords
+
+            //save current user position in database
+            //userUid = getCurrentUser()
+            userUid= "BHYBQx6F4IaAGvmZFZUoh9C0oGg2"
+            if(userUid){
+            console.log ("longitude" + longitude)
+            console.log("latitude"  +latitude)
+               writeUserLocationToDb(userUid, longitude, latitude)
+            }
+            else {
+            console.warn("UserUid undefined.")
+            }
 
 //            const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`
 //

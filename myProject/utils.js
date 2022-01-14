@@ -3,6 +3,8 @@ import 'react-native-get-random-values';
 import { nanoid } from 'nanoid';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from './firebase';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 
 export async function pickImage() {
@@ -45,3 +47,20 @@ export async function upLoadImage(uri, path, fName) {
 
     return { url, fileName };
 }
+
+export function getCurrentUser(){
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    const uid = user.uid;
+    // ...
+    return user.uid
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+}
+

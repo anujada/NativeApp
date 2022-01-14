@@ -3,6 +3,8 @@ import {initializeApp} from 'firebase/app';
 import {getAuth, signInWithEmailAndPassword} from 'firebase/auth';
 import {getStorage} from 'firebase/storage'
 import {initializeFirestore} from 'firebase/firestore'
+import { getDatabase } from "firebase/database";
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -11,6 +13,7 @@ import {initializeFirestore} from 'firebase/firestore'
 const firebaseConfig = {
   apiKey: "AIzaSyDBqnrFtU7oyNnEYnxNMv1FfNL0VwOaliM",
   authDomain: "meetupapp-411f6.firebaseapp.com",
+  databaseURL: "https://meetupapp-411f6-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "meetupapp-411f6",
   storageBucket: "meetupapp-411f6.appspot.com",
   messagingSenderId: "806278500537",
@@ -24,6 +27,8 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 export const storage = getStorage(app);
+
+export const realtime_database = getDatabase(app);
 
 export const db = initializeFirestore(app, {
 		experimentalForceLongPolling: true,
