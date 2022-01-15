@@ -11,7 +11,7 @@ import { colors } from './utils/index';
 import {textstyles} from './utils/textstyling'
 
 import {getCurrentUser } from './utils'
-import { writeUserLocationToDb, getNearUsersFromDb } from './utils/location_utils'
+import { updateUserLocation, getNearUsersFromDb } from './utils/location_utils'
 
 const { PRIMARY_COLOR, SECONDARY_COLOR } = colors
 
@@ -52,58 +52,24 @@ const [NearUserList, setNearUserList] = useState([
                                                                                 "distance": "600 meter"
                                                                               }
                                                                             ])
+const MINUTE_MS = 60000;
+useEffect(() => {
+  const interval = setInterval(() => {
+    load()
+  }, MINUTE_MS);
 
-    useEffect(() => {
-        load()
-    })
+  return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+}, [])
 
-    async function load() {
-        //setNearUserList(null)
-        setErrorMessage(null)
-        try {
-            let { status } = await Location.requestPermissionsAsync()
-
-            if (status !== 'granted') {
-                setErrorMessage('Access to location is needed to run the app')
-                return
-            }
-            const location = await Location.getCurrentPositionAsync()
-
-            const { latitude, longitude } = location.coords
-
-            //save current user position in database
-            //userUid = getCurrentUser()
-            userUid= "BHYBQx6F4IaAGvmZFZUoh9C0oGg2"
-            if(userUid){
-            console.log ("longitude" + longitude)
-            console.log("latitude"  +latitude)
-               writeUserLocationToDb(userUid, longitude, latitude)
-            }
-            else {
-            console.warn("UserUid undefined.")
-            }
-
-//            const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`
-//
-//            const response = await fetch(weatherUrl)
-//
-//            const result = await response.json()
+ async function load() {
+     updateUserLocation()
+ }
 
 
-
-//            if (response.ok) {
-//                setNearUserList(result)
-//            } else {
-//                setErrorMessage(result.message)
-//            }
-        } catch (error) {
-            setErrorMessage(error.message)
-        }
-    }
-    if (NearUserList) {
+ if (NearUserList) {
         return (
               <Overview NearUserList={NearUserList}/>
-            
+
         )
     } else if (errorMessage) {
         return (
