@@ -38,7 +38,7 @@ export default function NearUserPreview({ user }) {
 
       <View style={styles.textContainer}>
         <View style={styles.titleContainer}>
-            <Text style={textstyles.h3}> {user.distance} </Text>
+            <Text style={textstyles.h3}> {user.distance} meter </Text>
             <Text style={textstyles.h2}> {user.name} </Text>
             <Text style={textstyles.h3}> {user.profiletext} </Text>
          </View>

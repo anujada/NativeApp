@@ -17,41 +17,7 @@ const { PRIMARY_COLOR, SECONDARY_COLOR } = colors
 
 export default function Overview1() {
 const [errorMessage, setErrorMessage] = useState(null)
-const [NearUserList, setNearUserList] = useState([
-                                                                              {
-                                                                              "name":"Adam",
-                                                                              "profiletext":"Just approach me!",
-                                                                                "image": "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                                "distance": "10 meter"
-                                                                            },
-                                                                            {
-                                                                            "name":"Luise",
-                                                                            "profiletext":"Happy to have a conversation",
-                                                                              "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                              "distance": "20 meter"
-
-                                                                            },
-                                                                            {
-                                                                            "name":"William",
-                                                                            "profiletext":"Just approach me!",
-                                                                              "image": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                              "distance": "100 meter"
-
-                                                                            },
-                                                                              {
-                                                                                "name":"Catherine",
-                                                                                "profiletext":"Just approach me!",
-                                                                                "image": "https://images.pexels.com/photos/2709388/pexels-photo-2709388.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                                "distance": "150 meter"
-
-                                                                              },
-                                                                              {
-                                                                                "name":"Eva",
-                                                                                "profiletext":"Let´s talk about art:)",
-                                                                                "image": "https://images.pexels.com/photos/2568412/pexels-photo-2568412.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-                                                                                "distance": "600 meter"
-                                                                              }
-                                                                            ])
+const [NearUserList, setNearUserList] = useState()
 const MINUTE_MS = 60000;
 useEffect(() => {
   const interval = setInterval(() => {
@@ -62,7 +28,33 @@ useEffect(() => {
 }, [])
 
  async function load() {
-     updateUserLocation()
+     userUid= "BHYBQx6F4IaAGvmZFZUoh9C0oGg2"
+     //userUid = getCurrentUser()
+
+     console.log("Load called")
+
+     try {
+                     let { status } = await Location.requestPermissionsAsync()
+
+                     if (status !== 'granted') {
+                         console.warn('Access to location is needed to run the app')
+                         return
+                     }
+                     const location = await Location.getCurrentPositionAsync()
+
+                     const { latitude, longitude } = location.coords
+
+                     //updateUserLocation(longitude, latitude, userUid)
+
+                     userProfiles = await getNearUsersFromDb(userUid)
+
+                     setNearUserList(userProfiles)
+
+                     //TODO handle in frontend
+
+                 } catch (error) {
+                     console.warn(error)
+      }
  }
 
 
