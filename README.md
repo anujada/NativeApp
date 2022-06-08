@@ -23,12 +23,12 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-###Create your React app
+### Create your React app
 To install the full React toolchain on WSL, we recommend using create-react-app:
 
 Create a new project folder: mkdir ReactProjects and enter that directory: cd ReactProjects.
 
-###Install React using create-react-app
+### Install React using create-react-app
 
 * npm
   ```sh
